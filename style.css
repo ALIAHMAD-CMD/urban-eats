@@ -1,0 +1,409 @@
+/* =========================================
+   0. GLOBAL RESET & SMOOTH SCROLLING
+   ========================================= */
+*, *::before, *::after { box-sizing: border-box; } /* Lab 4: box-sizing */
+html { scroll-behavior: smooth; }
+html, body { overflow-x: hidden; width: 100%; margin: 0; padding: 0; }
+::selection { background: #e67e22; color: #ffffff; }
+
+/* =========================================
+   1. BASE STYLES & WOOD BACKGROUND (Lab 1 & 3)
+   ========================================= */
+body {
+    font-family: 'Poppins', sans-serif;      /* font-family + inheritance (Lab E1) */
+    color: #f4f4f4;                          /* HEX color, inherited */
+    line-height: 1.6;                        /* line-height */
+    background-image: url('images/bg.jpg');  /* background-image */
+    background-repeat: no-repeat;            /* background-repeat */
+    background-position: center;             /* background-position */
+    background-size: cover;                  /* background-size */
+    background-attachment: fixed;            /* parallax */
+}
+p { color: #e0e0e0; text-align: justify; }   /* overrides inheritance (Lab E2) */
+h1, h2, h3 {                                 /* Grouping selector (Lab B5) */
+    font-family: 'Playfair Display', serif;
+    font-weight: bold; text-align: center; color: #ffffff;
+}
+
+/* =========================================
+   2. SECTION TITLES: SYMBOLS + SELF-DRAWING UNDERLINE (Lab D)
+   (block + fit-content so margins still collapse for Lab 5)
+   ========================================= */
+.section-title {
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    padding-bottom: 12px;
+    background-image: linear-gradient(#e67e22, #e67e22);
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 0% 3px;
+    animation: drawLine 1.2s ease forwards;
+}
+@keyframes drawLine { to { background-size: 80% 3px; } }
+
+/* Lab D: symbol BEFORE and AFTER the heading */
+.section-title::before { content: "🍴 "; color: #e67e22; font-size: 1.5rem; line-height: 1; vertical-align: middle; }
+.section-title::after  { content: " 🍴"; color: #e67e22; font-size: 1.5rem; line-height: 1; vertical-align: middle; }
+
+/* =========================================
+   3. HEADER & NAVIGATION
+   ========================================= */
+#main-header { /* ID selector (Lab B3) */
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 15px 20px;
+    text-align: center;
+    position: sticky; top: 0; z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+.site-title {
+    color: white;                 /* named color */
+    font-style: italic;           /* font-style */
+    text-decoration: underline;   /* text-decoration */
+    margin-bottom: 15px; margin-top: 0;
+}
+.nav-link { /* Class selector (Lab B2) */
+    display: inline-block;        /* Lab 8: inline-block */
+    color: white; text-decoration: none;
+    margin: 0 10px; padding: 8px 15px;
+    border-radius: 5px; transition: all 0.3s ease;
+}
+.nav-link:hover { background-color: #e67e22; transform: translateY(-2px); } /* Lab C1 */
+
+/* =========================================
+   4. WELCOME SECTION (Balanced Hero)
+   ========================================= */
+#welcome {
+    background: rgba(0, 0, 0, 0.4); /* lighter overlay so wood shows */
+    color: white;
+    padding: 110px 20px 90px 20px;
+    text-align: center;
+    position: relative;
+    isolation: isolate; /* keeps the glow pseudo-element behind content */
+    min-height: 92vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+}
+/* Warm ambient glows filling the empty corners */
+#welcome::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        radial-gradient(circle at 15% 30%, rgba(230, 126, 34, 0.20), transparent 40%),
+        radial-gradient(circle at 85% 70%, rgba(241, 196, 15, 0.14), transparent 40%);
+    pointer-events: none;
+    animation: glowPulse 6s ease-in-out infinite alternate;
+}
+@keyframes glowPulse { from { opacity: 0.6; } to { opacity: 1; } }
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Eyebrow tagline above the title */
+.hero-eyebrow {
+    display: inline-block;
+    color: #e67e22;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    animation: fadeInUp 0.8s ease-out 0.1s backwards;
+}
+
+#welcome h2 {
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9);
+    font-size: 4rem;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    animation: fadeInUp 0.8s ease-out 0.25s backwards;
+}
+#welcome p {
+    color: white;
+    font-size: 1.3rem;
+    max-width: 650px;
+    margin: 0 auto 35px auto;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+    animation: fadeInUp 0.8s ease-out 0.4s backwards;
+}
+
+.explore-btn {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeInUp 0.8s ease-out 0.55s backwards;
+}
+.explore-btn:hover { transform: scale(1.05); box-shadow: 0 5px 20px rgba(255, 140, 0, 0.5); }
+
+/* Glass feature chips below the button */
+.hero-features {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 40px;
+    animation: fadeInUp 0.8s ease-out 0.7s backwards;
+}
+.feature-chip {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding: 9px 20px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    color: #f4f4f4;
+    transition: all 0.3s ease;
+}
+.feature-chip:hover {
+    transform: translateY(-3px);
+    border-color: #e67e22;
+    background: rgba(230, 126, 34, 0.15);
+}
+
+/* Mouse scroll indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center;
+    opacity: 0.8;
+}
+.scroll-indicator .mouse { width: 26px; height: 42px; border: 2px solid white; border-radius: 15px; position: relative; }
+.scroll-indicator .wheel {
+    width: 4px; height: 8px; background: white; border-radius: 2px;
+    position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+    animation: scrollWheel 1.5s infinite;
+}
+@keyframes scrollWheel { 0% { top: 8px; opacity: 1; } 100% { top: 22px; opacity: 0; } }
+.scroll-indicator .arrow { margin-top: 12px; color: white; animation: bounce 2s infinite; }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+/* =========================================
+   5. MENU SECTION: GLOW, TICKER, GRID CARDS
+   ========================================= */
+#menu { padding: 100px 20px; text-align: center; position: relative; }
+#menu::before { /* soft accent glow */
+    content: ""; position: absolute; top: 20%; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(230,126,34,0.15) 0%, transparent 70%);
+    z-index: -1; pointer-events: none;
+}
+#menu .section-title {
+    background-color: rgba(0, 0, 0, 0.6);
+    background-image: none;
+    animation: none;
+    padding: 12px 35px; border-radius: 50px; margin-bottom: 30px;
+    backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Marquee ticker (flex = seamless loop) */
+.ticker-wrap { width: 100%; overflow: hidden; background: rgba(0,0,0,0.4); padding: 12px 0; margin-bottom: 50px; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); }
+.ticker { display: flex; width: max-content; animation: tickerScroll 25s linear infinite; color: #e67e22; font-weight: 600; letter-spacing: 1px; }
+@keyframes tickerScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* Perfect 4-card grid */
+.menu-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; max-width: 1200px; margin: 0 auto; perspective: 1000px; }
+
+/* BOX MODEL (Lab 4) — 'backwards' fill so hover transforms work after entrance */
+.food-card {
+    width: 100%; height: 460px; padding: 20px;
+    border: 2px solid rgba(255,255,255,0.1);
+    margin: 10px;                    /* visible, consistent margin (Lab 4 & 9) */
+    border-radius: 15px;             /* Lab 9 */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.4); /* Lab 9 */
+    background-color: #ffffff; color: #333333; text-align: center;
+    display: flex; flex-direction: column; justify-content: space-between;
+    overflow: hidden; position: relative;
+    transition: all 0.4s ease;
+    animation: fadeInUp 0.8s ease-out backwards;
+}
+.food-card:nth-child(1) { animation-delay: 0.1s; }
+.food-card:nth-child(2) { animation-delay: 0.2s; }
+.food-card:nth-child(3) { animation-delay: 0.3s; }
+.food-card:nth-child(4) { animation-delay: 0.4s; }
+
+/* Shine sweep (pseudo-element) */
+.food-card::before {
+    content: ""; position: absolute; top: 0; left: -75%; width: 50%; height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 100%);
+    transform: skewX(-25deg); transition: 0.6s; z-index: 5; pointer-events: none;
+}
+.food-card:hover::before { left: 125%; }
+.food-card:hover { transform: perspective(1000px) rotateX(3deg) translateY(-10px) scale(1.02); box-shadow: 0 25px 50px rgba(0,0,0,0.6); border-color: #e67e22; }
+
+.food-card h3 { color: #2c3e50; font-size: 1.3rem; margin: 5px 0; }
+.food-card p  { color: #555555; font-size: 0.95rem; } /* Descendant selector (Lab B6) */
+
+/* Ribbon tags */
+.badge { position: absolute; top: 15px; right: -35px; color: white; padding: 5px 40px; font-size: 0.75rem; font-weight: bold; transform: rotate(45deg); box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10; }
+.tag-orange { background: linear-gradient(135deg, #e67e22, #d35400); }
+.tag-red    { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+.tag-blue   { background: linear-gradient(135deg, #3498db, #2980b9); }
+.tag-green  { background: linear-gradient(135deg, #2ecc71, #27ae60); }
+
+.food-card:first-child { border: 3px solid #e67e22; } /* Lab C3: first-child */
+
+.img-container { width: 100%; height: 160px; overflow: hidden; border-radius: 10px; margin-bottom: 15px; }
+.food-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; } /* Descendant selector */
+.food-card:hover img { transform: scale(1.15); }
+
+/* Price ticket pill */
+.price { display: inline-block; background: #f0fdf4; color: #166534; padding: 6px 16px; border-radius: 20px; border: 1px dashed #166534; font-weight: bold; font-size: 1.1rem; margin: 10px auto; width: fit-content; }
+
+.order-btn, .submit-btn { /* Grouping selector */
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    color: white; border: none; padding: 12px 25px; border-radius: 25px;
+    cursor: pointer; margin-top: auto; font-weight: bold;
+    font-family: 'Poppins', sans-serif; transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(39, 174, 96, 0.3);
+}
+.order-btn:hover, .submit-btn:hover { background: linear-gradient(135deg, #219653, #27ae60); transform: translateY(-3px); } /* Lab C2 */
+
+/* CASCADE DEMO (Lab E4): same specificity, source order decides */
+.order-btn { background: linear-gradient(135deg, blue, lightblue); } /* named colors */
+.order-btn { background: linear-gradient(135deg, #27ae60, #2ecc71); }
+
+/* =========================================
+   6. ABOUT SECTION: GLASS PANEL, STATS, OVERFLOW BOX
+   ========================================= */
+#about {
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 80px 20px;
+    /* Lab 6 constraints */
+    width: 90%; height: auto; min-width: 300px; max-width: 900px;
+    min-height: 150px; max-height: 900px;
+    margin: 0 auto; border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    position: relative;
+}
+#about::before { content: ""; position: absolute; top: 0; left: 0; width: 400px; height: 400px; background: radial-gradient(circle, rgba(241,196,15,0.1) 0%, transparent 70%); z-index: -1; pointer-events: none; }
+#about p { color: #f4f4f4; }
+
+/* MARGIN COLLAPSING DEMO (Lab 5): 40px vs 20px collapses to 40px */
+.margin-bottom-demo { margin-bottom: 40px; }
+.margin-top-demo    { margin-top: 20px; text-align: center; font-size: 1.1rem; }
+
+/* Glass stats row */
+.stats-row { display: flex; justify-content: center; gap: 20px; margin: 40px 0; flex-wrap: wrap; }
+.stat-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); padding: 20px 30px; border-radius: 12px; text-align: center; backdrop-filter: blur(5px); flex: 1; min-width: 150px; max-width: 200px; transition: transform 0.3s; }
+.stat-card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.1); }
+.stat-card h4 { color: #e67e22; font-size: 2.5rem; margin: 0; font-family: 'Playfair Display', serif; }
+.stat-card p  { margin: 5px 0 0 0; font-size: 0.9rem; color: #ccc; text-align: center; }
+
+.scroll-box-title { width: fit-content; margin: 40px auto 15px auto; padding-bottom: 6px; border-bottom: 2px solid #e67e22; font-size: 1.3rem; color: #e67e22; text-align: center; }
+
+/* OVERFLOW DEMO (Lab 7) */
+.scroll-box {
+    width: 100%; max-width: 650px; height: 160px;
+    border: 1px solid #e0e0e0; border-left: 6px solid #e67e22;
+    padding: 20px; margin: 0 auto;
+    overflow: scroll;      /* Lab 7 */
+    overflow-x: hidden;    /* hides useless horizontal bar */
+    background-color: #ffffff; color: #333333; text-align: left; border-radius: 10px;
+}
+.scroll-box::-webkit-scrollbar { width: 8px; }
+.scroll-box::-webkit-scrollbar-track { background: #f1f1f1; }
+.scroll-box::-webkit-scrollbar-thumb { background: #e67e22; border-radius: 4px; }
+#about .scroll-box p { color: #333333; } /* Specificity fix (Lab E3) */
+
+/* =========================================
+   7. CONTACT SECTION: 2-COLUMN GLASS + FLOATING LABELS
+   ========================================= */
+#contact-section { padding: 100px 20px; text-align: center; position: relative; }
+#contact-section::before { content: ""; position: absolute; bottom: 10%; right: 10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(39,174,96,0.1) 0%, transparent 70%); z-index: -1; pointer-events: none; }
+#contact-section .section-title {
+    background-color: rgba(0, 0, 0, 0.6);
+    background-image: none; animation: none;
+    padding: 12px 35px; border-radius: 50px; margin-bottom: 50px;
+    backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.1);
+}
+
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 900px; margin: 0 auto; text-align: left; }
+.contact-info { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); }
+.contact-info h3 { text-align: left; color: #e67e22; margin-top: 0; }
+.contact-info ul { list-style: none; padding: 0; margin-top: 20px; }
+.contact-info li { margin-bottom: 15px; font-size: 1.1rem; }
+.contact-form { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); }
+
+/* ATTRIBUTE SELECTOR (Lab B4) */
+input[type="text"], input[type="email"], textarea {
+    width: 100%; padding: 15px;
+    border: 2px solid #555; border-radius: 8px;
+    font-size: 1rem; font-family: 'Poppins', sans-serif;
+    display: block;                      /* Lab 8: block */
+    background-color: rgba(0,0,0,0.3); color: #fff;
+    transition: all 0.3s ease; outline: none;
+}
+.form-group { position: relative; margin-bottom: 25px; }
+.form-group label { position: absolute; top: 50%; left: 15px; transform: translateY(-50%); color: #999; font-size: 1rem; pointer-events: none; transition: all 0.3s ease; background: transparent; padding: 0 5px; }
+.form-group textarea + label { top: 25px; }
+.form-group input:focus, .form-group textarea:focus,
+.form-group input:not(:placeholder-shown), .form-group textarea:not(:placeholder-shown) {
+    border-color: #e67e22; box-shadow: 0 0 12px rgba(230, 126, 34, 0.4); background: rgba(0,0,0,0.5);
+}
+.form-group input:focus + label, .form-group textarea:focus + label,
+.form-group input:not(:placeholder-shown) + label, .form-group textarea:not(:placeholder-shown) + label {
+    top: 0; font-size: 0.85rem; color: #e67e22; font-weight: 600;
+    background: #1a1a1a; padding: 0 5px; border-radius: 4px;
+}
+
+/* =========================================
+   8. HIDDEN ELEMENT, BACK-TO-TOP, FOOTER
+   ========================================= */
+.hidden-element { display: none; }        /* Lab 8: none */
+.inline-text    { display: inline; font-weight: bold; } /* Lab 8: inline */
+
+.back-to-top {
+    position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px;
+    background: #e67e22; color: white; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: all 0.3s ease; z-index: 999;
+}
+.back-to-top:hover { background: #d35400; transform: translateY(-5px); }
+
+footer { background-color: #0a0a0a; color: white; padding: 60px 20px 20px 20px; margin-top: 0; }
+.footer-container { display: flex; justify-content: space-around; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; gap: 40px; text-align: left; }
+.footer-col { flex: 1; min-width: 250px; }
+.footer-col h3 { color: #e67e22; text-align: left; margin-bottom: 20px; font-family: 'Poppins', sans-serif; }
+.footer-col p, .footer-col ul { color: #bdc3c7; text-align: left; }
+.footer-col ul { list-style: none; padding: 0; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a { color: #bdc3c7; text-decoration: none; transition: all 0.3s ease; display: inline-block; }
+.footer-col ul li a:hover { color: #e67e22; transform: translateX(5px); }
+.footer-bottom { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+
+/* =========================================
+   9. CUSTOM SCROLLBAR & RESPONSIVE BREAKPOINTS
+   ========================================= */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #1a1a1a; }
+::-webkit-scrollbar-thumb { background: #e67e22; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #d35400; }
+
+@media (max-width: 1024px) {
+    .menu-container { grid-template-columns: repeat(2, 1fr); }
+    .food-card { height: 480px; }
+    .contact-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+    #welcome h2 { font-size: 2.5rem; }
+    .hero-eyebrow { letter-spacing: 2px; }
+    .menu-container { grid-template-columns: 1fr; }
+    .food-card { height: auto; min-height: 420px; }
+    #about { max-height: none; }   /* release constraint so content never clips on phones */
+    .nav-link { display: block; margin: 10px 0; }
+    .footer-container { flex-direction: column; text-align: center; }
+    .footer-col { text-align: center; }
+    .footer-col h3, .footer-col p, .footer-col ul { text-align: center; }
+    .stats-row { flex-direction: column; align-items: center; }
+}

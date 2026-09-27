@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Eats - Premium Food Corner</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- EXTERNAL CSS (Lab A3) -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- INTERNAL CSS (Lab A2): Specificity Demo (Lab E3) -->
+    <style>
+        /* ID + Class (1,1,0) beats just Class (0,1,0) in external CSS */
+        #contact-section .submit-btn {
+            background: linear-gradient(135deg, #8e44ad, #9b59b6); 
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header id="main-header">
+        <h1 class="site-title">Urban Eats</h1>
+        <nav>
+            <a href="#welcome" class="nav-link">Home</a>
+            <a href="#menu" class="nav-link">Menu</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#contact-section" class="nav-link">Contact</a>
+        </nav>
+    </header>
+
+    <!-- WELCOME SECTION (Balanced Hero) -->
+    <section id="welcome">
+        <span class="hero-eyebrow">★ Authentic Taste Since 2020 ★</span>
+        <h2 class="section-title">Welcome to Urban Eats</h2>
+        <p>Experience the best culinary journey in town. We serve freshly prepared, delicious meals made with love and the finest ingredients.</p>
+        
+        <!-- INLINE CSS (Lab A1) -->
+        <a href="#menu" class="explore-btn" style="background-color: rgb(255, 140, 0); color: white; padding: 12px 25px; border: none; cursor: pointer; font-size: 16px; border-radius: 25px; text-decoration: none; display: inline-block; font-weight: bold;">
+            Explore Menu
+        </a>
+
+        <!-- Feature chips -->
+        <div class="hero-features">
+            <span class="feature-chip">🔥 Freshly Grilled</span>
+            <span class="feature-chip">🌿 Local Ingredients</span>
+            <span class="feature-chip">⚡ Fast Delivery</span>
+        </div>
+        
+        <!-- Mouse Scroll Indicator -->
+        <div class="scroll-indicator">
+            <div class="mouse"><div class="wheel"></div></div>
+            <div class="arrow">▼</div>
+        </div>
+    </section>
+
+    <!-- MENU SECTION -->
+    <section id="menu">
+        <h2 class="section-title">Our Menu</h2>
+        
+        <!-- Marquee Ticker -->
+        <div class="ticker-wrap">
+            <div class="ticker">
+                <span>🍕 Pizza $12.99 &nbsp;•&nbsp; 🍔 Burger $9.99 &nbsp;•&nbsp; 🥪 Sandwich $8.50 &nbsp;•&nbsp; 🍝 Pasta $11.00 &nbsp;•&nbsp; 🌮 Tacos $7.99 &nbsp;•&nbsp; 🥗 Salad $6.50 &nbsp;•&nbsp;</span>
+                <span>🍕 Pizza $12.99 &nbsp;•&nbsp; 🍔 Burger $9.99 &nbsp;•&nbsp; 🥪 Sandwich $8.50 &nbsp;•&nbsp; 🍝 Pasta $11.00 &nbsp;•&nbsp; 🌮 Tacos $7.99 &nbsp;•&nbsp; 🥗 Salad $6.50 &nbsp;•&nbsp;</span>
+            </div>
+        </div>
+
+        <div class="menu-container">
+            <!-- Card 1 -->
+            <div class="food-card">
+                <div class="badge tag-orange">Best Seller</div>
+                <div class="img-container"><img src="images/pizza.jpg" alt="Pizza"></div>
+                <h3>Classic Pizza</h3>
+                <p>Crispy crust with mozzarella and fresh basil.</p>
+                <span class="price">$12.99</span>
+                <button class="order-btn">Order Now</button>
+            </div>
+            <!-- Card 2 -->
+            <div class="food-card">
+                <div class="badge tag-red">Chef's Pick</div>
+                <div class="img-container"><img src="images/burger.jpg" alt="Burger"></div>
+                <h3>Juicy Burger</h3>
+                <p>Angus beef patty with cheddar and secret sauce.</p>
+                <span class="price">$9.99</span>
+                <button class="order-btn">Order Now</button>
+            </div>
+            <!-- Card 3 -->
+            <div class="food-card">
+                <div class="badge tag-blue">New</div>
+                <div class="img-container"><img src="images/sandwich.jpg" alt="Sandwich"></div>
+                <h3>Club Sandwich</h3>
+                <p>Triple-decker with turkey, bacon, and lettuce.</p>
+                <span class="price">$8.50</span>
+                <button class="order-btn">Order Now</button>
+            </div>
+            <!-- Card 4 -->
+            <div class="food-card">
+                <div class="badge tag-green">Veggie</div>
+                <div class="img-container"><img src="images/pasta.jpg" alt="Pasta"></div>
+                <h3>Creamy Pasta</h3>
+                <p>Fettuccine in a rich alfredo sauce with mushrooms.</p>
+                <span class="price">$11.00</span>
+                <button class="order-btn">Order Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <h2 class="section-title margin-bottom-demo">About Us</h2>
+        <!-- Margin Collapsing Demo (Lab 5) -->
+        <p class="margin-top-demo">Urban Eats was founded in 2020 with a simple mission: to bring high-quality, affordable, and mouth-watering food to our community. Our chefs use locally sourced ingredients to craft dishes that satisfy every craving.</p>
+        
+        <!-- Glass Stats Row -->
+        <div class="stats-row">
+            <div class="stat-card"><h4>5+</h4><p>Years Experience</p></div>
+            <div class="stat-card"><h4>40+</h4><p>Menu Items</p></div>
+            <div class="stat-card"><h4>10k+</h4><p>Happy Customers</p></div>
+        </div>
+
+        <!-- Overflow Demo (Lab 7) -->
+        <h3 class="scroll-box-title">Chef's Special Note & Terms</h3>
+        <div class="scroll-box">
+            <p>Welcome to Urban Eats! Please read our chef's note carefully. All our ingredients are sourced fresh daily from local farmers. We take pride in our zero-waste policy and sustainable cooking practices. If you have any allergies, please inform our staff before ordering. Our kitchen is nut-free, but we do process dairy and gluten. Reservations are recommended for groups of 6 or more. Cancellations must be made 24 hours in advance. We reserve the right to refuse service to anyone. Thank you for dining with us and supporting local agriculture. We hope you enjoy your meal and have a wonderful experience at Urban Eats. Don't forget to check out our daily specials board near the entrance!</p>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact-section">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-grid">
+            <!-- Left: Info -->
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                <p>We'd love to hear from you. Whether you have a question about our menu, need to make a reservation, or want to cater an event, we're here to help.</p>
+                <ul>
+                    <li>📍 123 Foodie Street, Wah Cantt</li>
+                    <li>📞 +92 300 1234567</li>
+                    <li>✉️ info@urbaneats.com</li>
+                    <li>🕒 Open Daily: 11 AM - 11 PM</li>
+                </ul>
+            </div>
+            
+            <!-- Right: Form with Floating Labels (Wired to FormSubmit) -->
+            <form action="https://formsubmit.co/aliahmedjutt1717@gmail.com" method="POST" class="contact-form">
+                
+                <!-- FormSubmit professional configuration (hidden inputs) -->
+                <input type="hidden" name="_subject" value="🍽️ New Message - Urban Eats Website">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                <!-- After you publish, uncomment the line below and put YOUR live URL:
+                <input type="hidden" name="_next" value="https://YOUR-SITE-NAME.netlify.app/">
+                -->
+
+                <div class="form-group">
+                    <input type="text" id="name" name="name" placeholder=" " required>
+                    <label for="name">Your Name</label>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder=" " required>
+                    <label for="email">Your Email</label>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" name="message" rows="4" placeholder=" " required></textarea>
+                    <label for="message">Your Message</label>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Hidden Element (Lab 8: display: none) -->
+    <p class="hidden-element">This text is hidden using display: none.</p>
+
+    <!-- Back to Top Button -->
+    <a href="#welcome" class="back-to-top">↑</a>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Urban Eats</h3>
+                <p>Serving the best culinary experiences in town since 2020. Fresh, local, and delicious.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#welcome">Home</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact-section">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Info</h3>
+                <p>123 Foodie Street, Wah Cantt</p>
+                <p>info@urbaneats.com</p>
+                <p>+92 300 1234567</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <!-- INLINE CSS (Lab A1) + display: inline (Lab 8) -->
+            <p>&copy; 2026 Urban Eats. All rights reserved. <span class="inline-text" style="color: rgb(255, 0, 0);">Built with passion.</span></p>
+        </div>
+    </footer>
+
+</body>
+</html>
